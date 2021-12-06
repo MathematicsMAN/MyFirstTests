@@ -35,5 +35,21 @@ class EmailValidator : TextWatcher {
         fun isValidEmail(email: CharSequence?): Boolean {
             return email != null && EMAIL_PATTERN.matcher(email).matches()
         }
+
+        fun lengthDomainName(email: CharSequence?): Int {
+            return if (isValidEmail(email)) {
+                email.toString().substringAfter('@').length
+            } else {
+                0
+            }
+        }
+
+        fun lengthUserName(email: CharSequence?): Int {
+            return if (isValidEmail(email)) {
+                email.toString().substringBefore('@').length
+            } else {
+                0
+            }
+        }
     }
 }
